@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Response {
+public class RestErrorResponse {
+    private int code;
     private String message;
-    private boolean isSuccess;
 }
