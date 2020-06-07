@@ -29,4 +29,5 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
     public RestErrorResponse RollbackException(RollbackException ex){
         return new RestErrorResponse(HttpStatus.BAD_REQUEST.value(),"Required fields rules");
     }
+
 }

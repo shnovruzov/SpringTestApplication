@@ -33,4 +33,9 @@ public class PageController {
     public Response deleteStudent(@PathVariable String id) {
         return studentsService.deleteById(Long.valueOf(id));
     }
+
+    @PutMapping("/update")
+    public Response update(@RequestBody Students students){
+        return studentsService.update(students);
+    }
 }

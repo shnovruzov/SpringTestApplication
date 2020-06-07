@@ -34,18 +34,18 @@ public class StudentsServiceImpl implements StudentsService {
 
     @Override
     public Students findById(Long id) {
-          try {
-              return studenstRepostiry.findById(id).get();
-          }catch (Exception e){
-              throw new CustomException("Student not found");
-          }
+        try {
+            return studenstRepostiry.findById(id).get();
+        } catch (Exception e) {
+            throw new CustomException("Student not found");
+        }
     }
 
     @Override
     public Response deleteById(Long id) {
         try {
             studenstRepostiry.deleteById(id);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new CustomException("Student not found");
         }
         return new Response("Successfully create student", true);
@@ -53,6 +53,15 @@ public class StudentsServiceImpl implements StudentsService {
 
     @Override
     public Response update(Students students) {
-        return null;
+          try{
+              Students oldStudent = studenstRepostiry.findById(students.getId()).get();
+              oldStudent.setEmail(students.getEmail());
+              oldStudent.setFirstName(students.getFirstName());
+              oldStudent.setLastName(students.getLastName());
+              studenstRepostiry.save(oldStudent);
+          }catch (Exception e){
+              throw new CustomException("Student not found");
+          }
+        return new Response("Successfully", true);
     }
 }
